@@ -1,0 +1,22 @@
+# Mac
+.DS_Store
+
+# npm
+npm-debug.log
+
+# yarn
+yarn-error.log
+
+# VIM
+*.un~
+Session.vim
+.netrwhist
+*~
+*.swp
+.lvimrc
+
+# localhistory
+.history
+
+# git
+*.patch
