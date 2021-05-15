@@ -26,8 +26,7 @@ echo "Hello $(whoami)! Let's get you set up!"
 
 echo "cloning dotfiles"
 git clone git@github.com:jpedroschmitz/dotfiles.git "${HOME}/dotfiles"
-ln -s "${HOME}/dotfiles/.zshrc" "${HOME}/.zshrc"
-ln -s "${HOME}/dotfiles/.vimrc" "${HOME}/.vimrc"
+cp "${HOME}/dotfiles/.vimrc" "${HOME}/.vimrc"
 
 # --------------
 
@@ -90,6 +89,25 @@ brew install --cask font-fira-code font-jetbrains-mono
 
 # --------------
 
+echo "Installing zsh and Oh My Zsh"
+
+# Install zsh
+brew install zsh
+# Set as default
+chsh -s /usr/local/bin/zsh
+# Copy config file
+cp "${HOME}/dotfiles/.zshrc" "${HOME}/.zshrc"
+
+# Install Oh My Zsh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+# Install Spaceship
+git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
+ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
+# Install ZInit
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+
+# --------------
+
 echo "Remove outdated versions from the cellar"
 brew cleanup
 
@@ -100,10 +118,6 @@ code --install-extension shan.code-settings-sync
 
 # --------------
 
-git config --global user.name "João Pedro Schmitz"
-git config --global user.email "jpedroschmitz@hotmail.com"
-git config --global core.editor vim # Set Vim as default GIT editor
-
 echo "Generating a new SSH key for GitHub"
 ssh-keygen -t ed25519 -C "jpedroschmitz@hotmail.com" -f ~/.ssh/id_ed25519
 eval "$(ssh-agent -s)"
@@ -112,8 +126,8 @@ echo "Host *\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ~/.ssh/id_ed2
 ssh-add -K ~/.ssh/id_ed25519
 echo "run 'pbcopy < ~/.ssh/id_ed25519.pub' and paste that into GitHub"
 
-ln -s "${HOME}/dotfiles/.gitignore_global" "${HOME}/.gitignore_global"
-ln -s "${HOME}/dotfiles/.gitconfig" "${HOME}/.gitconfig"
+cp "${HOME}/dotfiles/.gitignore_global" "${HOME}/.gitignore_global"
+cp "${HOME}/dotfiles/.gitconfig" "${HOME}/.gitconfig"
 
 # --------------
 

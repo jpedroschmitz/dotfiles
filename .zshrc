@@ -1,5 +1,10 @@
 export PATH="/usr/local/sbin:$PATH"
-export ZSH="/Users/jpedroschmitz/.oh-my-zsh"
+export ZSH="/Users/joaopedro/.oh-my-zsh"
+
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+source $HOME/.aliases
 
 ZSH_THEME="spaceship"
 SPACESHIP_PROMPT_ORDER=(
@@ -20,9 +25,12 @@ SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_CHAR_SYMBOL="❯"
 SPACESHIP_CHAR_SUFFIX=" "
 
-plugins=(git zsh-syntax-highlighting zsh-autosuggestions fast-syntax-highlighting)
+if [[ "$TERM_PROGRAM" == "Hyper" ]]; then
+  SPACESHIP_PROMPT_SEPARATE_LINE=false
+  SPACESHIP_DIR_SHOW=false
+  SPACESHIP_GIT_BRANCH_SHOW=false
+fi
 
-# --- Source
-source $ZSH/oh-my-zsh.sh
-source $HOME/.functions
-source $HOME/.aliases
+zinit light zdharma/fast-syntax-highlighting
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
