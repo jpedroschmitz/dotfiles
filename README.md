@@ -6,10 +6,10 @@ Personal dotfiles for macOS.
 
 ## Installation
 
+To install everything, just run the following command. It will clone the repository and get everything ready =D
+
 ```sh
-git clone https://github.com/jpedroschmitz/dotfiles.git
-cd dotfiles
-./.macos
+curl https://raw.githubusercontent.com/jpedroschmitz/dotfiles/HEAD/.macos | bash
 ```
 
 ## Thanks to...
