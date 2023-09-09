@@ -16,4 +16,3 @@ curl https://raw.githubusercontent.com/jpedroschmitz/dotfiles/HEAD/.macos | bash
 
 - [Mathias](https://github.com/mathiasbynens/dotfiles)
 - [Kent C. Dodds](https://github.com/kentcdodds/dotfiles)
-- [Jesper](https://github.com/jesperorb/dotfiles)

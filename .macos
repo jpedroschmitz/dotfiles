@@ -1,13 +1,5 @@
 #!/usr/bin/env bash
 
-# ~/.macos — https://mths.be/macos
-# Modified by João Pedro Schmitz
-
-# Run without downloading:
-# curl https://raw.githubusercontent.com/jpedroschmitz/dotfiles/HEAD/.macos | bash
-
-# --------------
-
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
 osascript -e 'tell application "System Preferences" to quit'
@@ -40,55 +32,6 @@ echo "Installing Homebrew"
 
 # --------------
 
-echo "Installing lts Node.js with nvm"
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-
-nvm install --lts
-
-echo "node --version: $(node --version)"
-echo "npm --version: $(npm --version)"
-
-# --------------
-
-echo "Installing yarn"
-brew install yarn
-
-echo "yarn --version: $(yarn --version)"
-
-# --------------
-
-echo "Installing a few global npm packages"
-yarn global add ghost-cli create-next-app vercel
-
-# --------------
-
-echo "Installing a few cli's"
-brew install gh
-
-# --------------
-
-echo "Install more recent versions of some macOS tools"
-brew install vim
-brew install php
-brew install openssh
-
-# --------------
-
-echo "Installing apps with brew cask"
-brew install --cask alfred google-chrome firefox brave-browser \
-google-drive visual-studio-code 1password vlc discord \
-obs zoom spotify slack docker hyper insomnia grammarly notion \
-telegram microsoft-edge loom iterm2 figma selfcontrol gather \
-linear-linear
-
-# --------------
-
-echo "Installing Fira Code and JetBrains Mono"
-brew tap homebrew/cask-fonts
-brew install --cask font-fira-code font-jetbrains-mono
-
-# --------------
-
 echo "Installing zsh and Oh My Zsh"
 
 # Install zsh
@@ -105,6 +48,67 @@ git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/theme
 ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 # Install ZInit
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+
+# --------------
+
+echo "Installing asdf"
+brew install asdf
+
+echo -e "\n. $(brew --prefix asdf)/libexec/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
+
+
+# --------------
+
+echo "Installing lts Node.js with asdf"
+
+brew install gpg
+asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+asdf install nodejs latest
+asdf global nodejs latest
+
+echo "node --version: $(node --version)"
+echo "npm --version: $(npm --version)"
+
+# --------------
+
+echo "Installing yarn"
+npm install --global yarn
+
+echo "yarn --version: $(yarn --version)"
+
+# --------------
+
+echo "Installing pnpm"
+brew install pnpm
+
+echo "pnpm --version: $(pnpm --version)"
+
+# --------------
+
+echo "Installing a few cli's"
+brew install gh
+
+# --------------
+
+echo "Install more recent versions of some macOS tools"
+brew install vim
+brew install php
+brew install openssh
+
+# --------------
+
+echo "Installing apps with brew --cask"
+brew install --cask raycast google-chrome firefox zed warp adobe-creative-cloud \
+google-drive there arc visual-studio-code 1password tunnelbear \
+spotify postico shureplus-motiv sequel-ace hyper insomnia grammarly \
+linear-linear another-redis-desktop-manager monitorcontrol logitech-g-hub \
+github elgato-control-center drata-agent docker cron colorsnapper cleanshot
+
+# --------------
+
+echo "Installing Fira Code and JetBrains Mono"
+brew tap homebrew/cask-fonts
+brew install --cask font-fira-code font-jetbrains-mono
 
 # --------------
 
@@ -161,7 +165,7 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 # Screen                                                                      #
 ###############################################################################
 
-# Hide desktop apps 
+# Hide desktop apps
 write com.apple.finder CreateDesktop false
 
 # Require password immediately after sleep or screen saver begins
@@ -446,31 +450,23 @@ echo "Done. Note that some of these changes require a logout/restart to take eff
 
 printf "TODO:\n\
 Install: \n\
-  Gifski (App Store) \n\
-  Todoist (App Store) \n\
-	Dato (App Store) \n\
-	Lungo (App Store) \n\
-	Battery Indicator (App Store) \n\
-  Logi Options (https://www.logitech.com/pt-br/product/options) \n\
-  Logi Unifying (https://support.logi.com/hc/en-us/articles/360025297913-Logitech-Unifying-Software) \n\
-	Kap (https://getkap.co/) \n\
+	Pandan (App Store) \n\
   Add Plausible localStorage flag for my website on browsers (https://plausible.io/docs/excluding)
 \n\
 Restart Terminal.app\n\
 Login to literally everything \n\
 Configure Mail.app \n\
 Sync VSCode extensions \n\
-Add Alfred powerpack license \n\
+Configure Epson Printer \n\
 Install extensions: \n\
-  Notion Web clipper (https://chrome.google.com/webstore/detail/notion-web-clipper/knheggckgoiihginacbkhaalnibhilkk)
   Wappalyzer (https://chrome.google.com/webstore/detail/wappalyzer/gppongmhjkpfnbhagpmjfkannfbllamg)
-  Facebook Pixel Helper (https://chrome.google.com/webstore/detail/facebook-pixel-helper/fdgfkebogiimcoedlicjlajpkdmockpc)
+	GraphQL Network Inspector (https://chrome.google.com/webstore/detail/graphql-network-inspector/ndlbedplllcgconngcnfmkadhokfaaln)
   META SEO inspector (https://chrome.google.com/webstore/detail/meta-seo-inspector/ibkclpciafdglkjkcibmohobjkcfkaef)
   React Developer Tools (https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
   Grammarly (https://chrome.google.com/webstore/detail/grammarly-for-chrome/kbfnbcaeplbcioakkpcpgfkobkghlhen)
+	Méliuz: Cashback e cupons em suas compras (https://chrome.google.com/webstore/detail/m%C3%A9liuz-cashback-e-cupons/jdcfmebflppkljibgpdlboifpcaalolg)
   1Password (https://chrome.google.com/webstore/detail/1password-%E2%80%93-password-mana/aeblfdkhhhdcdjpifhhbdiojplfjncoa)
-  Adblock Plus (https://chrome.google.com/webstore/detail/adblock-plus-free-ad-bloc/cfhdojbkjhnklbpkdaibdccddilifddb)
-  Octotree (https://chrome.google.com/webstore/detail/octotree-github-code-tree/bkhaagjahfmjljalopjnoealnfndnagc)
-  Simplified Twitter (https://chrome.google.com/webstore/detail/simplified-twitter/kfopmjhmejbgomgeajemgpgpbckpoopg)
+	Refined GitHub (https://chrome.google.com/webstore/detail/refined-github/hlepfoohegkhhmjieoechaddaejaokhf)
+	WA Web Plus for WhatsApp (https://chrome.google.com/webstore/detail/wa-web-plus-for-whatsapp/ekcgkejcjdcmonfpmnljobemcbpnkamh)
 Restart macOS
 "

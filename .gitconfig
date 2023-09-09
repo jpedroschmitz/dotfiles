@@ -1,6 +1,7 @@
 [user]
-  name = João Pedro Schmitz
-  email = jpedroschmitz@hotmail.com
+  name =
+	email =
+	signingkey =
 
 [core]
 	editor = vim
@@ -38,7 +39,13 @@
 	defaultBranch = main
 
 [pull]
-  rebase = true
+	rebase = true
+
+[format]
+  pretty = format:%C(auto,yellow)%h%C(auto,magenta)% G? %C(auto,blue)%>(25,trunc)%ad %C(auto,green)%<(15,trunc)%aN%C(auto,reset)%s%C(auto,red)% gD% D
+
+[log]
+  date = iso8601
 
 [push]
   default = current
@@ -46,3 +53,12 @@
 [branch]
 	# Show most recently changed branches first.
 	sort = -committerdate
+
+[commit]
+	gpgsign = true
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
