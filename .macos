@@ -56,7 +56,6 @@ brew install asdf
 
 echo -e "\n. $(brew --prefix asdf)/libexec/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
 
-
 # --------------
 
 echo "Installing lts Node.js with asdf"
@@ -86,7 +85,7 @@ echo "pnpm --version: $(pnpm --version)"
 # --------------
 
 echo "Installing a few cli's"
-brew install gh
+brew install gh gnupg
 
 # --------------
 
@@ -452,12 +451,16 @@ printf "TODO:\n\
 Install: \n\
 	Pandan (App Store) \n\
   Add Plausible localStorage flag for my website on browsers (https://plausible.io/docs/excluding)
+  Adobe Lightroom
 \n\
 Restart Terminal.app\n\
 Login to literally everything \n\
 Configure Mail.app \n\
 Sync VSCode extensions \n\
 Configure Epson Printer \n\
+Configure GPG Keys \n\
+  gpg --import gpg-pub.asc
+  gpg --import gpg-sc.asc
 Install extensions: \n\
   Wappalyzer (https://chrome.google.com/webstore/detail/wappalyzer/gppongmhjkpfnbhagpmjfkannfbllamg)
 	GraphQL Network Inspector (https://chrome.google.com/webstore/detail/graphql-network-inspector/ndlbedplllcgconngcnfmkadhokfaaln)
