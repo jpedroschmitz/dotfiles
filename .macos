@@ -425,6 +425,14 @@ defaults write com.apple.commerce AutoUpdateRestartRequired -bool false
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
 ###############################################################################
+# Keyboard                                                                    #
+###############################################################################
+defaults write -g ApplePressAndHoldEnabled -bool false
+# https://apple.stackexchange.com/a/83923
+defaults write -g InitialKeyRepeat -int 10
+defaults write -g KeyRepeat -int 1
+
+###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
 
