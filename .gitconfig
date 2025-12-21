@@ -1,11 +1,12 @@
 [user]
-  name =
+	name =
 	email =
 	signingkey =
 
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
+	autocrlf = input
 
 [color "status"]
 	added = green
@@ -62,3 +63,6 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
+[gpg]
+	program = /opt/homebrew/bin/gpg

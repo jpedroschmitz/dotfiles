@@ -51,22 +51,25 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/i
 
 # --------------
 
-echo "Installing asdf"
-brew install asdf
-
-echo -e "\n. $(brew --prefix asdf)/libexec/asdf.sh" >> ${ZDOTDIR:-~}/.zshrc
-
-# --------------
-
-echo "Installing lts Node.js with asdf"
+echo "Installing lts Node.js with volta"
 
 brew install gpg
-asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
-asdf install nodejs latest
-asdf global nodejs latest
+
+# install Volta
+curl https://get.volta.sh | bash
+
+# install Node
+volta install node
 
 echo "node --version: $(node --version)"
 echo "npm --version: $(npm --version)"
+
+# --------------
+
+echo "Installing bun"
+curl -fsSL https://bun.com/install | bash
+
+echo "bun --version: $(bun --version)"
 
 # --------------
 
@@ -97,11 +100,11 @@ brew install openssh
 # --------------
 
 echo "Installing apps with brew --cask"
-brew install --cask raycast google-chrome firefox zed warp adobe-creative-cloud \
-google-drive there arc visual-studio-code 1password tunnelbear \
-spotify postico shureplus-motiv sequel-ace hyper insomnia grammarly \
-linear-linear another-redis-desktop-manager monitorcontrol logitech-g-hub \
-github elgato-control-center drata-agent docker cron colorsnapper cleanshot
+brew install --cask raycast google-chrome firefox zed ghostty cursor claude-code \
+google-drive arc visual-studio-code 1password protonvpn spotify shureplus-motiv \
+linear-linear monitorcontrol github docker cron colorsnapper cleanshot chatgpt \
+figma loom postico roam todoist-app twist webstorm
+
 
 # --------------
 
@@ -113,11 +116,6 @@ brew install --cask font-fira-code font-jetbrains-mono
 
 echo "Remove outdated versions from the cellar"
 brew cleanup
-
-# --------------
-
-echo "Installing VSCode extensions"
-code --install-extension shan.code-settings-sync
 
 # --------------
 
@@ -457,27 +455,22 @@ echo "Done. Note that some of these changes require a logout/restart to take eff
 
 printf "TODO:\n\
 Install: \n\
-	Pandan (App Store) \n\
-  Add Plausible localStorage flag for my website on browsers (https://plausible.io/docs/excluding)
-  Adobe Lightroom
+	Pandan (App Store)
+  Dato (App Store)
+  Fresco (App Store)
+  Pure Paste (App Store)
 \n\
 Restart Terminal.app\n\
 Login to literally everything \n\
 Configure Mail.app \n\
-Sync VSCode extensions \n\
-Configure Epson Printer \n\
 Configure GPG Keys \n\
   gpg --import gpg-pub.asc
   gpg --import gpg-sc.asc
 Install extensions: \n\
   Wappalyzer (https://chrome.google.com/webstore/detail/wappalyzer/gppongmhjkpfnbhagpmjfkannfbllamg)
-	GraphQL Network Inspector (https://chrome.google.com/webstore/detail/graphql-network-inspector/ndlbedplllcgconngcnfmkadhokfaaln)
   META SEO inspector (https://chrome.google.com/webstore/detail/meta-seo-inspector/ibkclpciafdglkjkcibmohobjkcfkaef)
   React Developer Tools (https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
-  Grammarly (https://chrome.google.com/webstore/detail/grammarly-for-chrome/kbfnbcaeplbcioakkpcpgfkobkghlhen)
 	Méliuz: Cashback e cupons em suas compras (https://chrome.google.com/webstore/detail/m%C3%A9liuz-cashback-e-cupons/jdcfmebflppkljibgpdlboifpcaalolg)
   1Password (https://chrome.google.com/webstore/detail/1password-%E2%80%93-password-mana/aeblfdkhhhdcdjpifhhbdiojplfjncoa)
-	Refined GitHub (https://chrome.google.com/webstore/detail/refined-github/hlepfoohegkhhmjieoechaddaejaokhf)
-	WA Web Plus for WhatsApp (https://chrome.google.com/webstore/detail/wa-web-plus-for-whatsapp/ekcgkejcjdcmonfpmnljobemcbpnkamh)
 Restart macOS
 "
