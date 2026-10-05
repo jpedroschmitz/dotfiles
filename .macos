@@ -33,10 +33,14 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # --------------
 
-echo "Installing zsh"
+echo "Installing CLIs, apps and fonts from Brewfile"
+echo "Sign in to the App Store first so mas can install App Store apps"
+brew bundle --file="${HOME}/www/dotfiles/Brewfile"
 
-# Install zsh
-brew install zsh
+# --------------
+
+echo "Configuring zsh"
+
 # Set as default
 echo "/opt/homebrew/bin/zsh" | sudo tee -a /etc/shells
 chsh -s /opt/homebrew/bin/zsh
@@ -76,9 +80,6 @@ echo "yarn --version: $(yarn --version)"
 
 # --------------
 
-echo "Installing pnpm"
-brew install pnpm
-
 echo "pnpm --version: $(pnpm --version)"
 
 # --------------
@@ -94,26 +95,6 @@ volta install @openai/codex
 
 # --------------
 
-echo "Installing a few cli's"
-brew install gh gnupg pinentry-mac git-delta lazygit postgresql@18 elixir
-brew install --cask gcloud-cli
-
-# --------------
-
-echo "Install more recent versions of some macOS tools"
-brew install vim
-brew install php
-
-# --------------
-
-echo "Installing apps with brew --cask"
-brew install --cask raycast google-chrome firefox brave-browser ghostty cursor \
-claude google-drive 1password 1password-cli mullvad-vpn tailscale-app spotify \
-shureplus-motiv linear-linear monitorcontrol docker-desktop notion-calendar \
-cleanshot figma loom postico roam todoist-app
-
-# --------------
-
 echo "Configuring Ghostty"
 mkdir -p "${HOME}/.config/ghostty"
 cp "${HOME}/www/dotfiles/ghostty/config" "${HOME}/.config/ghostty/config"
@@ -126,14 +107,8 @@ mkdir -p "${CURSOR_USER}"
 cp "${HOME}/www/dotfiles/cursor/settings.json" "${CURSOR_USER}/settings.json"
 cp "${HOME}/www/dotfiles/cursor/keybindings.json" "${CURSOR_USER}/keybindings.json"
 while read -r extension; do
-  /Applications/Cursor.app/Contents/Resources/app/bin/cursor --install-extension "${extension}"
+  /Applications/Cursor.app/Contents/Resources/app/bin/cursor --install-extension "${extension}" < /dev/null
 done < "${HOME}/www/dotfiles/cursor/extensions.txt"
-
-
-# --------------
-
-echo "Installing JetBrains Mono"
-brew install --cask font-jetbrains-mono
 
 # --------------
 
@@ -476,12 +451,6 @@ echo "Done. Note that some of these changes require a logout/restart to take eff
 # --------------
 
 printf "TODO:\n\
-Install: \n\
-  Pandan (App Store)
-  Dato (App Store)
-  Fresco (App Store)
-  Pure Paste (App Store)
-\n\
 Open Ghostty\n\
 Login to literally everything \n\
 Configure Mail.app \n\
