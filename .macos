@@ -16,14 +16,14 @@ echo "Hello $(whoami)! Let's get you set up!"
 
 # --------------
 
-echo "cloning dotfiles"
-git clone git@github.com:jpedroschmitz/dotfiles.git "${HOME}/dotfiles"
-cp "${HOME}/dotfiles/.vimrc" "${HOME}/.vimrc"
+echo "mkdir -p ${HOME}/www"
+mkdir -p "${HOME}/www"
 
 # --------------
 
-echo "mkdir -p ${HOME}/code"
-mkdir -p "${HOME}/code"
+echo "cloning dotfiles"
+git clone git@github.com:jpedroschmitz/dotfiles.git "${HOME}/www/dotfiles"
+cp "${HOME}/www/dotfiles/.vimrc" "${HOME}/.vimrc"
 
 # --------------
 
@@ -41,17 +41,17 @@ brew install zsh
 echo "/opt/homebrew/bin/zsh" | sudo tee -a /etc/shells
 chsh -s /opt/homebrew/bin/zsh
 # Copy config files (Zinit and plugins install on first launch)
-cp "${HOME}/dotfiles/.zshrc" "${HOME}/.zshrc"
-cp "${HOME}/dotfiles/.aliases" "${HOME}/.aliases"
+cp "${HOME}/www/dotfiles/.zshrc" "${HOME}/.zshrc"
+cp "${HOME}/www/dotfiles/.aliases" "${HOME}/.aliases"
 
 # --------------
 
 echo "Installing lts Node.js with volta"
 
-brew install gpg
-
 # install Volta
 curl https://get.volta.sh | bash
+export VOLTA_HOME="${HOME}/.volta"
+export PATH="${VOLTA_HOME}/bin:${PATH}"
 
 # install Node
 volta install node
@@ -63,13 +63,14 @@ echo "npm --version: $(npm --version)"
 
 echo "Installing bun"
 curl -fsSL https://bun.com/install | bash
+export PATH="${HOME}/.bun/bin:${PATH}"
 
 echo "bun --version: $(bun --version)"
 
 # --------------
 
 echo "Installing yarn"
-npm install --global yarn
+volta install yarn
 
 echo "yarn --version: $(yarn --version)"
 
@@ -94,7 +95,7 @@ volta install @openai/codex
 # --------------
 
 echo "Installing a few cli's"
-brew install gh gnupg pinentry-mac git-delta lazygit postgresql@18
+brew install gh gnupg pinentry-mac git-delta lazygit postgresql@18 elixir
 brew install --cask gcloud-cli
 
 # --------------
@@ -115,24 +116,24 @@ cleanshot figma loom postico roam todoist-app
 
 echo "Configuring Ghostty"
 mkdir -p "${HOME}/.config/ghostty"
-cp "${HOME}/dotfiles/ghostty/config" "${HOME}/.config/ghostty/config"
+cp "${HOME}/www/dotfiles/ghostty/config" "${HOME}/.config/ghostty/config"
 
 # --------------
 
 echo "Configuring Cursor"
 CURSOR_USER="${HOME}/Library/Application Support/Cursor/User"
 mkdir -p "${CURSOR_USER}"
-cp "${HOME}/dotfiles/cursor/settings.json" "${CURSOR_USER}/settings.json"
-cp "${HOME}/dotfiles/cursor/keybindings.json" "${CURSOR_USER}/keybindings.json"
+cp "${HOME}/www/dotfiles/cursor/settings.json" "${CURSOR_USER}/settings.json"
+cp "${HOME}/www/dotfiles/cursor/keybindings.json" "${CURSOR_USER}/keybindings.json"
 while read -r extension; do
   /Applications/Cursor.app/Contents/Resources/app/bin/cursor --install-extension "${extension}"
-done < "${HOME}/dotfiles/cursor/extensions.txt"
+done < "${HOME}/www/dotfiles/cursor/extensions.txt"
 
 
 # --------------
 
-echo "Installing Fira Code and JetBrains Mono"
-brew install --cask font-fira-code font-jetbrains-mono
+echo "Installing JetBrains Mono"
+brew install --cask font-jetbrains-mono
 
 # --------------
 
@@ -148,8 +149,8 @@ printf "Host *\n  IdentityFile ~/.ssh/id_ed25519\n  IgnoreUnknown UseKeychain\n 
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 echo "run 'pbcopy < ~/.ssh/id_ed25519.pub' and paste that into GitHub"
 
-cp "${HOME}/dotfiles/.gitignore_global" "${HOME}/.gitignore_global"
-cp "${HOME}/dotfiles/.gitconfig" "${HOME}/.gitconfig"
+cp "${HOME}/www/dotfiles/.gitignore_global" "${HOME}/.gitignore_global"
+cp "${HOME}/www/dotfiles/.gitconfig" "${HOME}/.gitconfig"
 
 # --------------
 
