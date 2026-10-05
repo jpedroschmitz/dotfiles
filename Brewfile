@@ -16,6 +16,16 @@ brew "postgresql@18"
 brew "elixir"
 brew "mas"
 
+# iOS
+tap "cameroncooke/axe"
+brew "cameroncooke/axe/axe"
+brew "cocoapods"
+brew "watchman"
+brew "cliclick"
+
+# Java (Firebase emulators)
+cask "temurin"
+
 # Apps
 cask "raycast"
 cask "google-chrome"
@@ -31,7 +41,7 @@ cask "mullvad-vpn"
 cask "tailscale-app"
 cask "spotify"
 cask "shureplus-motiv"
-cask "linear-linear"
+cask "linear"
 cask "monitorcontrol"
 cask "docker-desktop"
 cask "notion-calendar"
@@ -47,6 +57,7 @@ cask "gcloud-cli"
 cask "font-jetbrains-mono"
 
 # App Store
+mas "Xcode", id: 497799835
 mas "Pandan", id: 1569600264
 mas "Dato", id: 1470584107
 mas "Fresco", id: 1251572132
