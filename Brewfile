@@ -19,8 +19,6 @@ brew "mas"
 # iOS
 tap "cameroncooke/axe"
 brew "cameroncooke/axe/axe"
-brew "cocoapods"
-brew "watchman"
 brew "cliclick"
 
 # Java (Firebase emulators)
