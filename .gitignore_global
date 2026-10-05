@@ -17,6 +17,3 @@ Session.vim
 
 # localhistory
 .history
-
-# git
-*.patch
