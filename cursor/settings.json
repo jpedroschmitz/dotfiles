@@ -106,9 +106,6 @@
   "javascript.preferences.quoteStyle": "single",
   "javascript.suggest.autoImports": true,
   "javascript.updateImportsOnFileMove.enabled": "never",
-  "terminal.integrated.env.osx": {
-    "FIG_NEW_SESSION": "1",
-  },
   "terminal.integrated.fontSize": 14,
   "terminal.integrated.inheritEnv": false,
   "typescript.preferences.quoteStyle": "single",
