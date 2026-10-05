@@ -112,6 +112,12 @@ done < "${HOME}/www/dotfiles/cursor/extensions.txt"
 
 # --------------
 
+echo "Configuring GitHub CLI"
+mkdir -p "${HOME}/.config/gh"
+cp "${HOME}/www/dotfiles/gh/config.yml" "${HOME}/.config/gh/config.yml"
+
+# --------------
+
 echo "Remove outdated versions from the cellar"
 brew cleanup
 
