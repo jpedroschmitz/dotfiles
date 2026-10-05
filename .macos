@@ -100,10 +100,10 @@ brew install openssh
 # --------------
 
 echo "Installing apps with brew --cask"
-brew install --cask raycast google-chrome firefox zed ghostty cursor claude-code \
-google-drive arc visual-studio-code 1password protonvpn spotify shureplus-motiv \
-linear-linear monitorcontrol github docker cron colorsnapper cleanshot chatgpt \
-figma loom postico roam todoist-app twist webstorm
+brew install --cask raycast google-chrome firefox brave-browser ghostty cursor \
+claude google-drive 1password 1password-cli mullvad-vpn tailscale-app spotify \
+shureplus-motiv linear-linear monitorcontrol docker-desktop notion-calendar \
+cleanshot figma loom postico roam todoist-app
 
 
 # --------------
