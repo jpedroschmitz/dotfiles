@@ -93,6 +93,11 @@ curl -fsSL https://cursor.com/install | bash
 # Codex
 volta install @openai/codex
 
+# Claude Code settings and global instructions
+mkdir -p "${HOME}/.claude"
+cp "${HOME}/www/dotfiles/claude/settings.json" "${HOME}/.claude/settings.json"
+cp "${HOME}/www/dotfiles/claude/CLAUDE.md" "${HOME}/.claude/CLAUDE.md"
+
 # --------------
 
 echo "Configuring Ghostty"
