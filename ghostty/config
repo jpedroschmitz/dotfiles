@@ -1,0 +1,7 @@
+# https://ghostty.org/docs/config
+
+shell-integration = zsh
+keybind = shift+enter=text:\n
+# theme = dark:Night Owl,light:Night Owlish Light
+# theme = dark:Catppuccin Frappe,light:Catppuccin Latte
+theme = Catppuccin Frappe

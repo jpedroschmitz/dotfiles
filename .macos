@@ -111,6 +111,12 @@ claude google-drive 1password 1password-cli mullvad-vpn tailscale-app spotify \
 shureplus-motiv linear-linear monitorcontrol docker-desktop notion-calendar \
 cleanshot figma loom postico roam todoist-app
 
+# --------------
+
+echo "Configuring Ghostty"
+mkdir -p "${HOME}/.config/ghostty"
+cp "${HOME}/dotfiles/ghostty/config" "${HOME}/.config/ghostty/config"
+
 
 # --------------
 
