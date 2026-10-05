@@ -66,3 +66,14 @@
 
 [gpg]
 	program = /opt/homebrew/bin/gpg
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	line-numbers = true
+	side-by-side = false
+
+[merge]
+	conflictstyle = zdiff3
