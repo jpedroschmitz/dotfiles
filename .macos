@@ -117,6 +117,17 @@ echo "Configuring Ghostty"
 mkdir -p "${HOME}/.config/ghostty"
 cp "${HOME}/dotfiles/ghostty/config" "${HOME}/.config/ghostty/config"
 
+# --------------
+
+echo "Configuring Cursor"
+CURSOR_USER="${HOME}/Library/Application Support/Cursor/User"
+mkdir -p "${CURSOR_USER}"
+cp "${HOME}/dotfiles/cursor/settings.json" "${CURSOR_USER}/settings.json"
+cp "${HOME}/dotfiles/cursor/keybindings.json" "${CURSOR_USER}/keybindings.json"
+while read -r extension; do
+  /Applications/Cursor.app/Contents/Resources/app/bin/cursor --install-extension "${extension}"
+done < "${HOME}/dotfiles/cursor/extensions.txt"
+
 
 # --------------
 
