@@ -145,6 +145,12 @@ cp "${HOME}/www/dotfiles/gnupg/gpg.conf" "${HOME}/.gnupg/gpg.conf"
 cp "${HOME}/www/dotfiles/gnupg/gpg-agent.conf" "${HOME}/.gnupg/gpg-agent.conf"
 gpgconf --kill gpg-agent
 
+# Import keys from 1Password
+echo "Sign in to 1Password and enable Settings > Developer > Integrate with 1Password CLI, then press enter"
+read -r < /dev/tty
+op read "op://Personal/GPG/gpg-pub.asc" | gpg --import
+op read "op://Personal/GPG/gpg-sc.asc" | gpg --batch --import
+
 # --------------
 
 echo "Configuring git"
@@ -491,9 +497,6 @@ printf "TODO:\n\
 Open Ghostty\n\
 Login to literally everything \n\
 Configure Mail.app \n\
-Configure GPG Keys \n\
-  gpg --import gpg-pub.asc
-  gpg --import gpg-sc.asc
 Install Chrome extensions: \n\
   1Password (https://chromewebstore.google.com/detail/aeblfdkhhhdcdjpifhhbdiojplfjncoa)
   Refined GitHub (https://chromewebstore.google.com/detail/hlepfoohegkhhmjieoechaddaejaokhf)

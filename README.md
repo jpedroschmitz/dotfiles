@@ -19,7 +19,7 @@ Personal dotfiles for macOS.
    curl -fsSL https://raw.githubusercontent.com/jpedroschmitz/dotfiles/HEAD/.macos | bash
    ```
 
-   It will ask for your password, an SSH key passphrase and your git name and email along the way.
+   It will ask for your password, an SSH key passphrase, a 1Password sign-in and your git name and email along the way.
 
 4. Follow the TODO list printed at the end, then restart.
 
@@ -35,11 +35,11 @@ pbcopy < ~/.ssh/id_ed25519.pub
 
 ### GPG (verified commits)
 
-Commits are signed with GPG (`commit.gpgsign = true`). Import the keys, then set the signing key:
+Commits are signed with GPG (`commit.gpgsign = true`). The script imports the keys from the `GPG` item in 1Password and sets the signing key. To do it by hand:
 
 ```sh
-gpg --import gpg-pub.asc
-gpg --import gpg-sc.asc
+op read "op://Personal/GPG/gpg-pub.asc" | gpg --import
+op read "op://Personal/GPG/gpg-sc.asc" | gpg --batch --import
 gpg --list-secret-keys --keyid-format=long
 git config --global user.signingkey <key-id>
 ```
