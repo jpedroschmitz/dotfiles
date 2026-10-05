@@ -24,6 +24,7 @@ mkdir -p "${HOME}/www"
 echo "cloning dotfiles"
 git clone https://github.com/jpedroschmitz/dotfiles.git "${HOME}/www/dotfiles"
 cp "${HOME}/www/dotfiles/.vimrc" "${HOME}/.vimrc"
+cp "${HOME}/www/dotfiles/.editorconfig" "${HOME}/.editorconfig"
 
 # --------------
 
