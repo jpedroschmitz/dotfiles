@@ -476,22 +476,22 @@ echo "Done. Note that some of these changes require a logout/restart to take eff
 
 printf "TODO:\n\
 Install: \n\
-	Pandan (App Store)
+  Pandan (App Store)
   Dato (App Store)
   Fresco (App Store)
   Pure Paste (App Store)
 \n\
-Restart Terminal.app\n\
+Open Ghostty\n\
 Login to literally everything \n\
 Configure Mail.app \n\
 Configure GPG Keys \n\
   gpg --import gpg-pub.asc
   gpg --import gpg-sc.asc
-Install extensions: \n\
-  Wappalyzer (https://chrome.google.com/webstore/detail/wappalyzer/gppongmhjkpfnbhagpmjfkannfbllamg)
-  META SEO inspector (https://chrome.google.com/webstore/detail/meta-seo-inspector/ibkclpciafdglkjkcibmohobjkcfkaef)
-  React Developer Tools (https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi)
-	Méliuz: Cashback e cupons em suas compras (https://chrome.google.com/webstore/detail/m%C3%A9liuz-cashback-e-cupons/jdcfmebflppkljibgpdlboifpcaalolg)
-  1Password (https://chrome.google.com/webstore/detail/1password-%E2%80%93-password-mana/aeblfdkhhhdcdjpifhhbdiojplfjncoa)
+Install Chrome extensions: \n\
+  1Password (https://chromewebstore.google.com/detail/aeblfdkhhhdcdjpifhhbdiojplfjncoa)
+  Refined GitHub (https://chromewebstore.google.com/detail/hlepfoohegkhhmjieoechaddaejaokhf)
+  React Developer Tools (https://chromewebstore.google.com/detail/fmkadmapgofadopljbjfkapdkoienihi)
+  META SEO inspector (https://chromewebstore.google.com/detail/ibkclpciafdglkjkcibmohobjkcfkaef)
+  Amplitude Event Explorer (https://chromewebstore.google.com/detail/acehfjhnmhbmgkedjmjlobpgdicnhkbp)
 Restart macOS
 "
