@@ -87,6 +87,17 @@ echo "pnpm --version: $(pnpm --version)"
 
 # --------------
 
+echo "Installing AI CLIs"
+
+# Claude Code
+curl -fsSL https://claude.ai/install.sh | bash
+# Cursor Agent
+curl -fsSL https://cursor.com/install | bash
+# Codex
+volta install @openai/codex
+
+# --------------
+
 echo "Installing a few cli's"
 brew install gh gnupg pinentry-mac git-delta lazygit postgresql@18
 brew install --cask gcloud-cli
