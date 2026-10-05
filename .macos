@@ -142,6 +142,9 @@ cp "${HOME}/www/dotfiles/.gitconfig" "${HOME}/.gitconfig"
 
 echo "MacOS System modifications:"
 
+# Use Touch ID for sudo (survives macOS updates)
+sed "s/^#auth/auth/" /etc/pam.d/sudo_local.template | sudo tee /etc/pam.d/sudo_local > /dev/null
+
 # Disable the sound effects on boot
 sudo nvram SystemAudioVolume=" "
 
