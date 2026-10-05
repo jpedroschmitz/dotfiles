@@ -4,12 +4,71 @@
 
 Personal dotfiles for macOS.
 
+## What's inside
+
+- `.macos`: setup script. Installs everything, copies the configs and applies macOS defaults
+- `Brewfile`: CLIs, apps, fonts and App Store apps
+- `.zshrc` and `.aliases`: zsh with [Zinit](https://github.com/zdharma-continuum/zinit) and [Spaceship](https://spaceship-prompt.sh)
+- `.gitconfig` and `.gitignore_global`: git with signed commits and [delta](https://github.com/dandavison/delta)
+- `gnupg/`: GPG agent using `pinentry-mac`
+- `ghostty/`: [Ghostty](https://ghostty.org) config
+- `cursor/`: [Cursor](https://cursor.com) settings, keybindings and extensions
+- `claude/`: [Claude Code](https://claude.com/claude-code) settings and global instructions
+- `gh/`: [GitHub CLI](https://cli.github.com) config
+- `.vimrc` and `.editorconfig`
+
 ## Installation
 
-To install everything, just run the following command. It will clone the repository and get everything ready =D
+1. Update macOS and sign in to the App Store.
+2. Install the Xcode Command Line Tools:
+
+   ```sh
+   xcode-select --install
+   ```
+
+3. Run the setup script. It clones the repository to `~/www/dotfiles` and gets everything ready =D
+
+   ```sh
+   curl -fsSL https://raw.githubusercontent.com/jpedroschmitz/dotfiles/HEAD/.macos | bash
+   ```
+
+   It will ask for your password, an SSH key passphrase and your git name and email along the way.
+
+4. Follow the TODO list printed at the end, then restart.
+
+## After installing
+
+### SSH
+
+Add the new SSH key to [GitHub](https://github.com/settings/keys):
 
 ```sh
-curl https://raw.githubusercontent.com/jpedroschmitz/dotfiles/HEAD/.macos | bash
+pbcopy < ~/.ssh/id_ed25519.pub
+```
+
+### GPG (verified commits)
+
+Commits are signed with GPG (`commit.gpgsign = true`). Import the keys, then set the signing key:
+
+```sh
+gpg --import gpg-pub.asc
+gpg --import gpg-sc.asc
+gpg --list-secret-keys --keyid-format=long
+git config --global user.signingkey <key-id>
+```
+
+If the key isn't on GitHub yet, add it to [GitHub](https://github.com/settings/keys) so commits show as Verified:
+
+```sh
+gpg --armor --export <key-id> | pbcopy
+```
+
+### Keeping it in sync
+
+Check the Brewfile against what is installed:
+
+```sh
+brew bundle check --file=~/www/dotfiles/Brewfile --verbose
 ```
 
 ## Thanks to...
