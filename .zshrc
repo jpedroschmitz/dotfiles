@@ -1,8 +1,7 @@
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export ZSH="/Users/joaopedro/.oh-my-zsh"
 
-plugins=(git)
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.local/share/zinit/zinit.git/zinit.zsh ]]; then
@@ -18,10 +17,12 @@ autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 ### End of Zinit's installer chunk
 
+SPACESHIP_PROMPT_ASYNC=false
+
 zinit light spaceship-prompt/spaceship-prompt
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-completions
-zinit light zdharma/fast-syntax-highlighting
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 # ----------------------------------------
 # ZSH - Appearance & Theme Options
@@ -30,7 +31,6 @@ zinit light zdharma/fast-syntax-highlighting
 # Avoid printing % character at first line
 unsetopt PROMPT_SP
 
-ZSH_THEME="spaceship"
 SPACESHIP_PROMPT_ORDER=(
   user          # Username section
   dir           # Current directory section
@@ -48,26 +48,36 @@ SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_CHAR_SYMBOL="❯"
 SPACESHIP_CHAR_SUFFIX=" "
 
-alias code="/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code"
-
 source $HOME/.aliases
 
-eval $(/opt/homebrew/bin/brew shellenv)
+export XDG_CONFIG_HOME="$HOME/.config"
+export GPG_TTY=$(tty)
 
 # pnpm
-export PNPM_HOME="/Users/joaopedro/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 # pnpm end
 
-export GPG_TTY=$(tty)
-
 # bun completions
-[ -s "/Users/joaopedro/.bun/_bun" ] && source "/Users/joaopedro/.bun/_bun"
-
-export GEM_HOME=$HOME/.gem
+[ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
 
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
-alias claude="/Users/joaopedro/.claude/local/claude"
+# Ruby gem executables (kamal)
+export GEM_HOME=$HOME/.gem
+export PATH="$HOME/.gem/bin:$PATH"
+
+export PATH="/opt/homebrew/opt/postgresql@18/bin:$PATH"
+
+# Claude Code, Cursor Agent
+export PATH="$HOME/.local/bin:$PATH"
+
+# Prefer Homebrew binaries
+export PATH="/opt/homebrew/bin:$PATH"
+
+# Google Cloud SDK (manual install or Homebrew cask)
+GCLOUD_SDK="$HOME/google-cloud-sdk"
+[ -d "$GCLOUD_SDK" ] || GCLOUD_SDK="$HOMEBREW_PREFIX/share/google-cloud-sdk"
+[ -f "$GCLOUD_SDK/path.zsh.inc" ] && source "$GCLOUD_SDK/path.zsh.inc"
+[ -f "$GCLOUD_SDK/completion.zsh.inc" ] && source "$GCLOUD_SDK/completion.zsh.inc"

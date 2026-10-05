@@ -32,22 +32,16 @@ echo "Installing Homebrew"
 
 # --------------
 
-echo "Installing zsh and Oh My Zsh"
+echo "Installing zsh"
 
 # Install zsh
 brew install zsh
 # Set as default
-chsh -s /usr/local/bin/zsh
-# Copy config file
+echo "/opt/homebrew/bin/zsh" | sudo tee -a /etc/shells
+chsh -s /opt/homebrew/bin/zsh
+# Copy config files (Zinit and plugins install on first launch)
 cp "${HOME}/dotfiles/.zshrc" "${HOME}/.zshrc"
-
-# Install Oh My Zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-# Install Spaceship
-git clone https://github.com/denysdovhan/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt"
-ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
-# Install ZInit
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/zdharma/zinit/master/doc/install.sh)"
+cp "${HOME}/dotfiles/.aliases" "${HOME}/.aliases"
 
 # --------------
 
