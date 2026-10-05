@@ -29,6 +29,7 @@ mkdir -p "${HOME}/code"
 
 echo "Installing Homebrew"
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # --------------
 
@@ -101,7 +102,6 @@ brew install --cask gcloud-cli
 echo "Install more recent versions of some macOS tools"
 brew install vim
 brew install php
-brew install openssh
 
 # --------------
 
@@ -132,7 +132,6 @@ done < "${HOME}/dotfiles/cursor/extensions.txt"
 # --------------
 
 echo "Installing Fira Code and JetBrains Mono"
-brew tap homebrew/cask-fonts
 brew install --cask font-fira-code font-jetbrains-mono
 
 # --------------
@@ -145,9 +144,8 @@ brew cleanup
 echo "Generating a new SSH key for GitHub"
 ssh-keygen -t ed25519 -C "jpedroschmitz@hotmail.com" -f ~/.ssh/id_ed25519
 eval "$(ssh-agent -s)"
-touch ~/.ssh/config
-echo "Host *\n AddKeysToAgent yes\n UseKeychain yes\n IdentityFile ~/.ssh/id_ed25519" | tee ~/.ssh/config
-ssh-add -K ~/.ssh/id_ed25519
+printf "Host *\n  IdentityFile ~/.ssh/id_ed25519\n  IgnoreUnknown UseKeychain\n  UseKeychain yes\n  AddKeysToAgent yes\n" > ~/.ssh/config
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 echo "run 'pbcopy < ~/.ssh/id_ed25519.pub' and paste that into GitHub"
 
 cp "${HOME}/dotfiles/.gitignore_global" "${HOME}/.gitignore_global"
@@ -186,7 +184,7 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 ###############################################################################
 
 # Hide desktop apps
-write com.apple.finder CreateDesktop false
+defaults write com.apple.finder CreateDesktop false
 
 # Require password immediately after sleep or screen saver begins
 defaults write com.apple.screensaver askForPassword -int 1
@@ -289,8 +287,11 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
-# Set the icon size of Dock items to 64 pixels
-defaults write com.apple.dock tilesize -int 64
+# Set the icon size of Dock items to 85 pixels
+defaults write com.apple.dock tilesize -int 85
+
+# Don’t show recent applications in Dock
+defaults write com.apple.dock show-recents -bool false
 
 # Change minimize/maximize window effect
 defaults write com.apple.dock mineffect -string "scale"
@@ -384,7 +385,7 @@ defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 defaults write com.apple.mail AddressesIncludeNameOnPasteboard -bool false
 
 ###############################################################################
-# Terminal & iTerm 2                                                          #
+# Terminal                                                                    #
 ###############################################################################
 
 # Only use UTF-8 in Terminal.app
@@ -396,9 +397,6 @@ defaults write com.apple.terminal SecureKeyboardEntry -bool true
 
 # Disable the annoying line marks
 defaults write com.apple.Terminal ShowLineMarks -int 0
-
-# Don’t display the annoying prompt when quitting iTerm
-defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
 ###############################################################################
 # Activity Monitor                                                            #
