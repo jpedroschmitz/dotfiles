@@ -4,19 +4,6 @@
 
 Personal dotfiles for macOS.
 
-## What's inside
-
-- `.macos`: setup script. Installs everything, copies the configs and applies macOS defaults
-- `Brewfile`: CLIs, apps, fonts and App Store apps
-- `.zshrc` and `.aliases`: zsh with [Zinit](https://github.com/zdharma-continuum/zinit) and [Spaceship](https://spaceship-prompt.sh)
-- `.gitconfig` and `.gitignore_global`: git with signed commits and [delta](https://github.com/dandavison/delta)
-- `gnupg/`: GPG agent using `pinentry-mac`
-- `ghostty/`: [Ghostty](https://ghostty.org) config
-- `cursor/`: [Cursor](https://cursor.com) settings, keybindings and extensions
-- `claude/`: [Claude Code](https://claude.com/claude-code) settings and global instructions
-- `gh/`: [GitHub CLI](https://cli.github.com) config
-- `.vimrc` and `.editorconfig`
-
 ## Installation
 
 1. Update macOS and sign in to the App Store.

@@ -131,7 +131,8 @@ brew cleanup
 echo "Generating a new SSH key for GitHub"
 ssh-keygen -t ed25519 -C "jpedroschmitz@hotmail.com" -f ~/.ssh/id_ed25519
 eval "$(ssh-agent -s)"
-printf "Host *\n  IdentityFile ~/.ssh/id_ed25519\n  IgnoreUnknown UseKeychain\n  UseKeychain yes\n  AddKeysToAgent yes\n" > ~/.ssh/config
+cp "${HOME}/www/dotfiles/ssh/config" ~/.ssh/config
+chmod 600 ~/.ssh/config
 ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 echo "run 'pbcopy < ~/.ssh/id_ed25519.pub' and paste that into GitHub"
 
